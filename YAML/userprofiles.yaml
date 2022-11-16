@@ -21,14 +21,13 @@ spec:
         ports:
         - containerPort: 80
         env:
-        - name: SQL_USER
-          value: "sqladminiDw6538"
-        - name: SQL_PASSWORD
-          value: "vGk2iCvr&J3w9uGk"
         - name: SQL_SERVER
           value: "sqlserveridw6538.database.windows.net"
         - name: SQL_DBNAME
           value: "mydrivingDB"
+        envFrom:
+        - secretRef:
+            name: mysecret
 ---
 apiVersion: v1
 kind: Service
