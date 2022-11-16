@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: poi-deployment
+  namespace: api
   labels:
     app: poi
 spec:
@@ -33,6 +34,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: poi-service
+  namespace: api
   labels:
     app: poi
 spec:
