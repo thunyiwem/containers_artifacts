@@ -46,3 +46,39 @@ spec:
     name: http
   selector:
     app: userprofile
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: userprofile-ingress
+  namespace: api
+
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  rules:
+  - host: 4cc0c5dafc854b8785bc.eastasia.aksapp.io
+    http:
+      paths:
+      - path: /api/user
+        pathType: Prefix
+        backend:
+          service: 
+            name: userprofile-service
+            port: 
+              number: 80
+      - path: /api/docs/user
+        pathType: Prefix
+        backend:
+          service: 
+            name: userprofile-service
+            port: 
+              number: 80
+      - path: /metrics
+        pathType: Prefix
+        backend:
+          service: 
+            name: userprofile-service
+            port: 
+              number: 80
+  

@@ -46,3 +46,45 @@ spec:
     name: http
   selector:
     app: trips
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: trips-ingress
+  namespace: api
+
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  rules:
+  - host: 4cc0c5dafc854b8785bc.eastasia.aksapp.io
+    http:
+      paths:
+      - path: /api/trips
+        pathType: Prefix
+        backend:
+          service: 
+            name: trips-service
+            port: 
+              number: 80
+      - path: /metrics
+        pathType: Prefix
+        backend:
+          service: 
+            name: trips-service
+            port: 
+              number: 80
+      - path: /api/docs/trips
+        pathType: Prefix
+        backend:
+          service: 
+            name: trips-service
+            port: 
+              number: 80
+      - path: /api/json
+        pathType: Prefix
+        backend:
+          service: 
+            name: trips-service
+            port: 
+              number: 80

@@ -54,3 +54,59 @@ spec:
     name: http
   selector:
     app: userjava
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: userjava-ingress
+  namespace: api
+
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  rules:
+  - host: 4cc0c5dafc854b8785bc.eastasia.aksapp.io
+    http:
+      paths:
+      - path: /api/user-java
+        pathType: Prefix
+        backend:
+          service: 
+            name: userjava-service
+            port: 
+              number: 80
+      - path: /api/metrics
+        pathType: Prefix
+        backend:
+          service: 
+            name: userjava-service
+            port: 
+              number: 80
+      - path: /api/docs/user-java
+        pathType: Prefix
+        backend:
+          service: 
+            name: userjava-service
+            port: 
+              number: 80
+      - path: /api/documentation/user-java
+        pathType: Prefix
+        backend:
+          service: 
+            name: userjava-service
+            port: 
+              number: 80
+      - path: /api/swagger-resources
+        pathType: Prefix
+        backend:
+          service: 
+            name: userjava-service
+            port: 
+              number: 80
+      - path: /api/api-docs
+        pathType: Prefix
+        backend:
+          service: 
+            name: userjava-service
+            port: 
+              number: 80
